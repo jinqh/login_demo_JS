@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            height: 40px;
+            background: #333;
+            padding-left: 800px;
+        }
+        header a {
+            color: #fff;
+            font-size: 14px;
+            padding: 0 10px;
+            line-height: 40px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="##" class="login">登录</a>
+        <a href="##" class="register">注册</a>
+    </header>
+
+    <script src="js/cookie.js"></script>
+    <script>
+        var login = document.querySelector('.login');
+        var register = document.querySelector('.register');
+        var header = document.querySelector('header');
+
+        login.onclick = function() {
+            location.href = 'login.html';
+        }
+        register.onclick = function() {
+            location.href = 'register.html';
+        }
+
+        var str = getCookie('loginUser') ? getCookie('loginUser') : '';
+        if (str) {
+            var usn = document.createElement('a');
+            usn.innerHTML = str;
+            header.replaceChild(usn, login);
+        }
+    </script>
+</body>
+</html>

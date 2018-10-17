@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <p><label for="name">用户名：</label> <input type="text" id="name"></p>
+    <p><label for="pwd">密码：</label><input type="password" id="pwd"></p>
+    <p><input type="button" value="登录" id="login"> <input type="button" value="注册" id="register"></p>
+
+    <script src="js/cookie.js"></script>
+    <script>
+        var usernameInp = document.getElementById('name');
+        var pwdInp = document.getElementById('pwd');
+        var login = document.getElementById('login');
+
+        login.onclick = function() {
+            var username = usernameInp.value;
+            var pwd = pwdInp.value;
+            var users = getCookie('user') ? getCookie('user') : '';
+            users = convertStrToObj(users);
+            if (users[username] == pwd) {
+                alert('登录成功');
+                createCookie('loginUser', username, 7);
+                location.href = 'index.html';
+            } else {
+                alert('登录失败');
+            }
+        }
+
+        function convertStrToObj(str) {
+            if (!str) {
+                return {};
+            }
+            return JSON.parse(str);
+        }
+    </script>
+</body>
+</html>
